@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculator</title>
+    <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+<body>
+
+    <div class="calculator">
+        <h1>Basic Calculator</h1>
+
+        <input type="number" id="num1" placeholder="Enter first number">
+        <input type="number" id="num2" placeholder="Enter second number">
+
+        <div class="buttons">
+            <button onclick="calculate('add')">Add</button>
+            <button onclick="calculate('subtract')">Subtract</button>
+            <button onclick="calculate('multiply')">Multiply</button>
+            <button onclick="calculate('divide')">Divide</button>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculate(operation) {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const resultDiv = document.getElementById('result');
+
+            if (isNaN(num1) || isNaN(num2)) {
+                resultDiv.innerHTML = "Please enter valid numbers.";
+                return;
+            }
+
+            let result;
+
+            switch (operation) {
+                case 'add':
+                    result = num1 + num2;
+                    break;
+                case 'subtract':
+                    result = num1 - num2;
+                    break;
+                case 'multiply':
+                    result = num1 * num2;
+                    break;
+                case 'divide':
+                    if (num2 === 0) {
+                        resultDiv.innerHTML = "Cannot divide by zero.";
+                        return;
+                    }
+                    result = num1 / num2;
+                    break;
+                default:
+                    resultDiv.innerHTML = "Invalid operation.";
+                    return;
+            }
+
+            resultDiv.innerHTML = `Result: ${result}`;
+        }
+    </script>
+
+</body>
+</html>
